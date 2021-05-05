@@ -8,7 +8,7 @@
 ### Pull Image from Docker Hub
 
 ```
-docker pull asonger/elastic-detection-cli:latest
+docker pull asonger/elastic-detection-cli
 ```
 
 
