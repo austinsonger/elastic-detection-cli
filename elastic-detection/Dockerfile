@@ -1,14 +1,14 @@
 FROM ubuntu:latest
 
-# Configure locale
-ENV LANG=en_US.UTF-8 \
-    LANGUAGE=en_US:en \
-    LC_ALL=en_US.UTF-8
+LABEL maintainer="Austin Songer <austin@songer.pro>"
 
+# Configure Locale
+ENV LANG=en_US.UTF-8
+
+# Configure Timezone
+RUN apt-get install -y tzdata
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-LABEL maintainer="Austin Songer <austin@songer.pro>"
 
 USER root
 
@@ -27,8 +27,8 @@ RUN apt-get update && apt-get install -y \
   libssl-dev \
   net-tools
 
+#--Coming Soon--#
 # RUN git clone https://github.com/SigmaHQ/sigma.git
-
 # RUN https://github.com/3CORESec/SIEGMA.git
 
 RUN git clone https://github.com/elastic/detection-rules.git && \
