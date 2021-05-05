@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag elastic-detection-cli:$(date +%Y%m%d)
+      run: docker build . --file /elastic-detection/Dockerfile --tag elastic-detection-cli:$(date +%Y%m%d)
