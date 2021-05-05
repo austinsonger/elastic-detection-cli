@@ -11,7 +11,7 @@ docker pull asonger/elastic-detection-cli:latest
 ## Build Image from Dockerfile
 
 ```
-docker build -t elastic-cli .
+docker build -t elastic-detection-cli .
 ```
 
 
@@ -19,5 +19,7 @@ docker build -t elastic-cli .
 
 
 ```
-docker container run -it --name elastic-cli elastic-cli
+docker container run -it --name elastic-detection-cli elastic-detection-cli
 ```
+
+
