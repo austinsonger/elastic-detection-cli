@@ -6,7 +6,6 @@ LABEL maintainer="Austin Songer <austin@songer.pro>"
 ENV LANG=en_US.UTF-8
 
 # Configure Timezone
-RUN apt-get install -y tzdata
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
