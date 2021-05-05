@@ -28,10 +28,11 @@ docker container run -it --name elastic-detection-cli elastic-detection-cli
 
 
 ### Kill and Delete Containers and Images
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+```
 docker rm -f $(docker ps -aq)        # Delete all Containers
 docker rmi -f $(docker images -q)    # Delete all Images
-
+```
 
 
 ## Detection Rules CLI
