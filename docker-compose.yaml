@@ -1,0 +1,7 @@
+version: "2"
+
+services:
+
+  elastic-detection:
+    build: ./elastic-detection
+    image: asonger/elastic-detection-cli:latest
