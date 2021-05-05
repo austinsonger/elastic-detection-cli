@@ -1,5 +1,4 @@
-# Elastic Detection CLI
-
+![](https://github.com/austinsonger/elastic-detection-cli/raw/main/Elastic%20Detection%20CLI%20-%20L.png)
 
 ## Docker
 
