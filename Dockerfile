@@ -1,5 +1,13 @@
 FROM ubuntu:latest
 
+# Configure locale
+ENV LANG=en_US.UTF-8 \
+    LANGUAGE=en_US:en \
+    LC_ALL=en_US.UTF-8
+
+ENV TZ=America/Chicago
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 LABEL maintainer="Austin Songer <austin@songer.pro>"
 
 USER root
@@ -24,6 +32,9 @@ RUN git clone https://github.com/elastic/detection-rules.git && \
   cd detection-rules && \
   pip3 install -r requirements.txt && \
   rm -rf .git
+
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /detection-rules
 
