@@ -25,8 +25,7 @@ RUN apt-get update && apt-get install -y \
   slurm \
   curl \
   libssl-dev \
-  net-tools && \
-  rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apt/*
+  net-tools
 
 RUN git clone https://github.com/elastic/detection-rules.git && \
   cd detection-rules && \
@@ -34,7 +33,7 @@ RUN git clone https://github.com/elastic/detection-rules.git && \
   rm -rf .git
 
 RUN apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache/apt/*
 
 WORKDIR /detection-rules
 
