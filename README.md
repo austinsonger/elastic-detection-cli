@@ -35,10 +35,27 @@ docker rmi -f $(docker images -q)    # Delete all Images
 ```
 
 
-## Detection Rules CLI
+## Elastic Detection Rules CLI
 
 ```
 python3 -m detection_rules --help
 ```
+
+## 
+
+
+
+
+## 
+
+
+
+
+
+
+
+
+
+
 
 
