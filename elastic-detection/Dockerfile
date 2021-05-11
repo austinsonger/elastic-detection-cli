@@ -40,13 +40,13 @@ RUN git clone https://github.com/Neo23x0/sigma && \
   python3 -m virtualenv .venv3 && \
   . .venv3/bin/activate && \
   cd tools && \
-  pip3 install -r requirements.txt --ignore-installed --no-cache-dir && \
+  pip3 install -r requirements.txt --ignore-installed --no-cache-dir
 
 RUN git clone https://github.com/3CORESec/SIEGMA && \
   cd SIEGMA && \
   python3 -m virtualenv .venv3 && \
   . .venv3/bin/activate && \
-  pip install -r requirements.txt --ignore-installed --no-cache-dir && \
+  pip install -r requirements.txt --ignore-installed --no-cache-dir
 
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && rm -rf /var/cache/apt/*
