@@ -33,6 +33,8 @@ RUN git clone https://github.com/elastic/detection-rules.git && \
   pip3 install -r requirements.txt 
   # rm -rf .git
 
+RUN pip3 install virtualenv
+
 RUN git clone https://github.com/Neo23x0/sigma && \
   cd sigma && \
   python3 -m virtualenv .venv3 && \
