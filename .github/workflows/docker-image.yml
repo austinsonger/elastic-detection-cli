@@ -9,10 +9,10 @@ jobs:
       - name: Build and push
         uses: openzim/docker-publish-action@v4
         with:
-          image-name: openzim/zimit
+          image-name: asonger/elastic-detection-cli
           registries: |
             docker.io
-#            ghcr.io
+#           ghcr.io
           credentials: |
             DOCKERIO_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
             DOCKERIO_TOKEN=${{ secrets.DOCKERHUB_PASSWORD }}
@@ -26,3 +26,5 @@ jobs:
           build-args:
             VERSION={tag}
           manual-tag: ${{ github.event.inputs.version }}
+
+
