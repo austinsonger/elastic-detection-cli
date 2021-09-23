@@ -1,18 +1,5 @@
 name: Docker
-
-on:
-  push:
-    branches:
-      - master
-    tags:
-      - v*
-  workflow_dispatch:
-    inputs:
-      version:
-        description: Specific version to build
-        required: false
-        default: ''
-
+on: [push]
 jobs:
   build-and-push:
     name: Deploy Docker Image
