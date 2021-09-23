@@ -1,14 +1,6 @@
 name: Docker Github
 
-on:
-  schedule:
-   - cron: '0 0 * * *'  # every day at midnight
-  push:
-    branches: [ $default-branch ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ $default-branch ]
+on: [push]
 
 env:
   # Use docker.io for Docker Hub if empty
