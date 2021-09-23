@@ -9,5 +9,5 @@ jobs:
       uses: HurricanKai/Publish-Docker-Github-Action@master
       with:
         name: asonger/elastic-detection-cli
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
