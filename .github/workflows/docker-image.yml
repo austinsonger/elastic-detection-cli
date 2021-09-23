@@ -5,16 +5,21 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  schedule:
+  create:
+    tags:
+    
+concurrency: ci-${{ github.ref }}
+
+  #schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 */6 * * *'
+   # - cron:  '0 */6 * * *'
     
 env:
   # Use docker.io for Docker Hub if empty
-  #REGISTRY: ghcr.io
+  REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
-  #IMAGE_NAME: ${{ github.repository }}
-  #IMAGE_NAME_GHCR: ghcr.io/${{ github.repository }}
+  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME_GHCR: ghcr.io/${{ github.repository }}
   IMAGE_NAME_DOCKER: austinsonger/elastic-detection-clivv
 
 permissions:
@@ -25,9 +30,14 @@ permissions:
 
 jobs:
 
-  build:
-
+  build_release:
+    name: Build and Release
     runs-on: ubuntu-latest
+
+    outputs:
+      labels: ${{ steps.meta.outputs.labels }}
+      tags: ${{ steps.meta.outputs.tags }}
+
 
     steps:
     - uses: actions/checkout@v2
