@@ -18,13 +18,8 @@ jobs:
             DOCKERIO_TOKEN=${{ secrets.DOCKERHUB_PASSWORD }}
 #            GHCRIO_USERNAME=${{ secrets.GOOGLE_USERNAME }}
 #            GHCRIO_USERNAME=${{ secrets.GOOGLE_TOKEN }}
-          context: sub-folder
-          on-master: dev
-          tag-pattern: /^v*([0-9.]+)$/
-          latest-on-tag: true
-          restrict-to: openzim/zimit
-          build-args:
-            VERSION={tag}
-          manual-tag: ${{ github.event.inputs.version }}
+          on-master: latest
+          dockerfile: elastic-detection/Dockerfile
+
 
 
