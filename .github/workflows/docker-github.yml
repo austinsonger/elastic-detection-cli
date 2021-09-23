@@ -1,8 +1,8 @@
-name: Docker
+name: Docker Github
 
 on:
   schedule:
-    - cron: $cron-daily
+   - cron: '0 0 * * *'  # every day at midnight
   push:
     branches: [ $default-branch ]
     # Publish semver tags as releases.
