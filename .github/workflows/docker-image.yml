@@ -53,8 +53,8 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
           
-    - name: Build the Docker image
-      run: docker build . --file elastic-detection/Dockerfile --tag elastic-detection-cli:$(date +%Y%m%d)
+    #- name: Build the Docker image
+    # run: docker build . --file elastic-detection/Dockerfile --tag elastic-detection-cli:$(date +%Y%m%d)
   
     # Build and push Docker image with Buildx (don't push on PR)
     # https://github.com/docker/build-push-action
