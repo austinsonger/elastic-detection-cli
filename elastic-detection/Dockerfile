@@ -33,6 +33,8 @@ RUN git clone https://github.com/elastic/detection-rules.git && \
   pip3 install -r requirements.txt 
   # rm -rf .git
 
+ENTRYPOINT ["/detection-rules"]
+
 RUN pip3 install virtualenv
 
 RUN apt-get clean && \
