@@ -9,6 +9,7 @@ jobs:
   enrich:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'enrich'
     runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
     - name: enrichment
       uses: jitsecurity-controls/jit-github-action@v2.2
@@ -26,6 +27,7 @@ jobs:
   secret-detection:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'secret-detection'
     runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
     - name: gitleaks
       uses: jitsecurity-controls/jit-github-action@v2.2
@@ -43,6 +45,7 @@ jobs:
   software-component-analysis:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis'
     runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
     - name: osv-scanner
       uses: jitsecurity-controls/jit-github-action@v2.2
@@ -60,6 +63,7 @@ jobs:
   software-component-analysis-go:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-go'
     runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
     - name: nancy
       uses: jitsecurity-controls/jit-github-action@v2.2
@@ -77,6 +81,7 @@ jobs:
   software-component-analysis-js:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-js'
     runs-on: ubuntu-20.04
+    timeout-minutes: 20
     steps:
     - name: npm-audit
       uses: jitsecurity-controls/jit-github-action@v2.2
