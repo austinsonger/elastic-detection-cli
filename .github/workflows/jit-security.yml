@@ -7,91 +7,84 @@ on:
           required: true
 jobs:
   enrich:
-    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'enrich'
+    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'enrich' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-enrichment-code'
     runs-on: ubuntu-20.04
     timeout-minutes: 20
     steps:
     - name: enrichment
-      uses: jitsecurity-controls/jit-github-action@v2.5
+      uses: jitsecurity-controls/jit-github-action@v2.6
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
-        
-        security_control: ghcr.io/jitsecurity-controls/control-enrichment-slim:latest
+        security_control: registry.jit.io/control-enrichment-slim:latest
         security_control_args: --path \${WORK_DIR:-.}
-        
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
-
+        
   secret-detection:
-    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'secret-detection'
+    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'secret-detection' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-secret-detection'
     runs-on: ubuntu-20.04
     timeout-minutes: 20
     steps:
     - name: gitleaks
-      uses: jitsecurity-controls/jit-github-action@v2.5
+      uses: jitsecurity-controls/jit-github-action@v2.6
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
-        
-        security_control: ghcr.io/jitsecurity-controls/control-gitleaks-alpine:latest
+        security_control: registry.jit.io/control-gitleaks-alpine:latest
         security_control_args: detect --config \$GITLEAKS_CONFIG_FILE_PATH --source \${WORK_DIR:-.} -v --report-format json --report-path \$REPORT_FILE --redact --no-git --exit-code 0
         security_control_output_file: /tmp/report.json
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
-
+        
   software-component-analysis:
-    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis'
+    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
     runs-on: ubuntu-20.04
     timeout-minutes: 20
     steps:
     - name: osv-scanner
-      uses: jitsecurity-controls/jit-github-action@v2.5
+      uses: jitsecurity-controls/jit-github-action@v2.6
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
-        
-        security_control: ghcr.io/jitsecurity-controls/control-osv-scanner-alpine:latest
+        security_control: registry.jit.io/control-osv-scanner-alpine:latest
         security_control_args: --recursive \${WORK_DIR:-.}
-        
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
-
+        
   software-component-analysis-go:
-    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-go'
+    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-go' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
     runs-on: ubuntu-20.04
     timeout-minutes: 20
     steps:
     - name: nancy
-      uses: jitsecurity-controls/jit-github-action@v2.5
+      uses: jitsecurity-controls/jit-github-action@v2.6
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
-        
-        security_control: ghcr.io/jitsecurity-controls/control-nancy-alpine:latest
+        security_control: registry.jit.io/control-nancy-alpine:latest
         security_control_args: 
-        
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
-
+        
   software-component-analysis-js:
-    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-js'
+    if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-js' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
     runs-on: ubuntu-20.04
     timeout-minutes: 20
     steps:
     - name: npm-audit
-      uses: jitsecurity-controls/jit-github-action@v2.5
+      uses: jitsecurity-controls/jit-github-action@v2.6
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
-        
-        security_control: ghcr.io/jitsecurity-controls/control-npm-audit-slim:latest
+        security_control: registry.jit.io/control-npm-audit-slim:latest
         security_control_args: 
         security_control_output_file: /code/jit-report/enriched-audit-results.json
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
+        
