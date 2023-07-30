@@ -12,12 +12,11 @@ jobs:
     timeout-minutes: 20
     steps:
     - name: enrichment
-      uses: jitsecurity-controls/jit-github-action@v2.6
+      uses: jitsecurity-controls/jit-github-action@v3.0
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
         security_control: registry.jit.io/control-enrichment-slim:latest
-        security_control_args: --path \${WORK_DIR:-.}
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
@@ -28,12 +27,11 @@ jobs:
     timeout-minutes: 20
     steps:
     - name: gitleaks
-      uses: jitsecurity-controls/jit-github-action@v2.6
+      uses: jitsecurity-controls/jit-github-action@v3.0
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
         security_control: registry.jit.io/control-gitleaks-alpine:latest
-        security_control_args: detect --config \$GITLEAKS_CONFIG_FILE_PATH --source \${WORK_DIR:-.} -v --report-format json --report-path \$REPORT_FILE --redact --no-git --exit-code 0
         security_control_output_file: /tmp/report.json
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
@@ -45,12 +43,11 @@ jobs:
     timeout-minutes: 20
     steps:
     - name: osv-scanner
-      uses: jitsecurity-controls/jit-github-action@v2.6
+      uses: jitsecurity-controls/jit-github-action@v3.0
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
         security_control: registry.jit.io/control-osv-scanner-alpine:latest
-        security_control_args: --recursive \${WORK_DIR:-.}
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
@@ -61,12 +58,11 @@ jobs:
     timeout-minutes: 20
     steps:
     - name: nancy
-      uses: jitsecurity-controls/jit-github-action@v2.6
+      uses: jitsecurity-controls/jit-github-action@v3.0
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
         security_control: registry.jit.io/control-nancy-alpine:latest
-        security_control_args: 
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
@@ -77,12 +73,11 @@ jobs:
     timeout-minutes: 20
     steps:
     - name: npm-audit
-      uses: jitsecurity-controls/jit-github-action@v2.6
+      uses: jitsecurity-controls/jit-github-action@v3.0
       with:
         docker_user: jit-bot
         docker_password: ${{fromJSON(github.event.inputs.client_payload).payload.container_registry_token}}
         security_control: registry.jit.io/control-npm-audit-slim:latest
-        security_control_args: 
         security_control_output_file: /code/jit-report/enriched-audit-results.json
         dispatch_type: workflow
         context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
