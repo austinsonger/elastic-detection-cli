@@ -20,7 +20,6 @@ jobs:
       uses: jitsecurity-controls/jit-github-action@v3.0.1
       with:
         security_control: registry.jit.io/control-enrichment-slim:latest
-        context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   secret-detection:
@@ -33,7 +32,6 @@ jobs:
       with:
         security_control: registry.jit.io/control-gitleaks-alpine:latest
         security_control_output_file: /tmp/report.json
-        context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-go:
@@ -45,7 +43,6 @@ jobs:
       uses: jitsecurity-controls/jit-github-action@v3.0.1
       with:
         security_control: registry.jit.io/control-nancy-alpine:latest
-        context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-js:
@@ -58,7 +55,6 @@ jobs:
       with:
         security_control: registry.jit.io/control-npm-audit-slim:latest
         security_control_output_file: /code/jit-report/enriched-audit-results.json
-        context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-php:
@@ -71,7 +67,6 @@ jobs:
       with:
         security_control: registry.jit.io/control-osv-scanner-alpine:latest
         security_control_output_file: /code/jit-report/osv-scanner-results.json
-        context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-python:
@@ -84,6 +79,5 @@ jobs:
       with:
         security_control: registry.jit.io/control-osv-scanner-alpine:latest
         security_control_output_file: /code/jit-report/enriched-osv-scanner-results.json
-        context: ${{toJSON(fromJSON(github.event.inputs.client_payload).context)}}
         runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
