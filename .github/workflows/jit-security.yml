@@ -20,7 +20,6 @@ jobs:
       uses: jitsecurity-controls/jit-github-action@v4.0.1
       with:
         security_control: registry.jit.io/control-enrichment-slim:latest
-        runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   secret-detection:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'secret-detection' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-secret-detection'
@@ -32,7 +31,6 @@ jobs:
       with:
         security_control: registry.jit.io/control-gitleaks-alpine:latest
         security_control_output_file: /tmp/report.json
-        runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-go:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-go' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
@@ -43,7 +41,6 @@ jobs:
       uses: jitsecurity-controls/jit-github-action@v4.0.1
       with:
         security_control: registry.jit.io/control-nancy-alpine:latest
-        runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-js:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-js' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
@@ -55,7 +52,6 @@ jobs:
       with:
         security_control: registry.jit.io/control-npm-audit-slim:latest
         security_control_output_file: /code/jit-report/enriched-audit-results.json
-        runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-php:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-php' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
@@ -67,7 +63,6 @@ jobs:
       with:
         security_control: registry.jit.io/control-osv-scanner-alpine:latest
         security_control_output_file: /code/jit-report/osv-scanner-results.json
-        runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
   software-component-analysis-python:
     if: fromJSON(github.event.inputs.client_payload).payload.workflow_job_name == 'software-component-analysis-python' && fromJSON(github.event.inputs.client_payload).payload.workflow_slug == 'workflow-sca'
@@ -79,5 +74,4 @@ jobs:
       with:
         security_control: registry.jit.io/control-osv-scanner-alpine:latest
         security_control_output_file: /code/jit-report/enriched-osv-scanner-results.json
-        runner_setup: ${{toJSON(fromJSON(github.event.inputs.client_payload).context.job.runner.setup)}}
         
